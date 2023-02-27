@@ -6,6 +6,8 @@ import top.smartliu.mapper.BrandMapper;
 import top.smartliu.pojo.Brand;
 import top.smartliu.utils.SqlSessionFactoryUtils;
 
+import top.smartliu.service.BrandService;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -15,27 +17,17 @@ import java.util.List;
 
 @WebServlet(name = "SelectAllServlet", value = "/selectAllServlet")
 public class SelectAllServlet extends HttpServlet {
+    private BrandService service = new BrandService();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 1. 加载MyBatis核心配置文件，获取SqlSessionFactory实例
-        SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtils.getSqlSessionFactory();
+        List<Brand> brandList = service.selectAll();
+        System.out.println(brandList);
 
-        //2. 获取SqlSession对象，用它来执行sql
-        SqlSession sqlSession = sqlSessionFactory.openSession();
-
-        // 3. 解决硬编码问题
-        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
-        List<Brand> brands = brandMapper.selectAll();
-
-        System.out.println(brands);
-
-        //4. 释放资源
-        sqlSession.close();
-
-        // 5. 输出结果
+        // 输出结果
         response.setContentType("text/html;charset=utf-8");
         PrintWriter writer = response.getWriter();
-        writer.write(brands.toString());
+        writer.write(brandList.toString());
     }
 
     @Override
