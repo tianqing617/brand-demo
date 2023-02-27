@@ -33,8 +33,9 @@ public class SelectAllServlet extends HttpServlet {
         sqlSession.close();
 
         // 5. 输出结果
+        response.setContentType("text/html;charset=utf-8");
         PrintWriter writer = response.getWriter();
-        writer.write("success brand");
+        writer.write(brands.toString());
     }
 
     @Override
