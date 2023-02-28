@@ -1,11 +1,6 @@
 package top.smartliu.web;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import top.smartliu.mapper.BrandMapper;
 import top.smartliu.pojo.Brand;
-import top.smartliu.utils.SqlSessionFactoryUtils;
-
 import top.smartliu.service.BrandService;
 
 import javax.servlet.*;

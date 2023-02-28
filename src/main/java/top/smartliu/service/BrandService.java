@@ -24,4 +24,20 @@ public class BrandService {
 
         return brands;
     }
+
+    public void add(Brand brand){
+        //2. 获取SqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        //3. 获取BrandMapper
+        BrandMapper mapper = sqlSession.getMapper(BrandMapper.class);
+
+        //4. 调用方法
+        mapper.add(brand);
+
+        //提交事务
+        sqlSession.commit();
+
+        //释放资源
+        sqlSession.close();
+    }
 }
