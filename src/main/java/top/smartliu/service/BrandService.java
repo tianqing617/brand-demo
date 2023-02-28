@@ -40,4 +40,20 @@ public class BrandService {
         //释放资源
         sqlSession.close();
     }
+
+    public Brand selectById(int id){
+        // 调用BrandMapper.selectAll()
+
+        // 2. 获取SqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        // 3. 获取BrandMapper
+        BrandMapper mapper = sqlSession.getMapper(BrandMapper.class);
+
+        //4. 调用方法
+        Brand brand = mapper.selectById(id);
+
+        sqlSession.close();
+
+        return brand;
+    }
 }

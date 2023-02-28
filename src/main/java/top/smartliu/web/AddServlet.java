@@ -4,6 +4,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import top.smartliu.pojo.Brand;
 import top.smartliu.service.BrandService;
 
@@ -33,5 +35,9 @@ public class AddServlet extends HttpServlet {
 
         // 2. 调用service 完成添加
         service.add(brand);
+
+        response.setContentType("text/html;charset=utf-8");
+        PrintWriter writer = response.getWriter();
+        writer.write("success add");
     }
 }
