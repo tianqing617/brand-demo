@@ -18,4 +18,6 @@ public interface BrandMapper {
     @Select("select * from tb_brand where id = #{id}")
     @ResultMap("brandResultMap")
     Brand selectById(int id);
+
+    void update(Brand brand);
 }
