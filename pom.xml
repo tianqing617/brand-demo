@@ -33,6 +33,12 @@
       <artifactId>mybatis</artifactId>
       <version>3.5.11</version>
     </dependency>
+    <!--FastJson-->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.83</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>brand-demo</finalName>

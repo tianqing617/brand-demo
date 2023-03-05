@@ -1,5 +1,6 @@
 package top.smartliu.web;
 
+import com.alibaba.fastjson.JSON;
 import top.smartliu.pojo.Brand;
 import top.smartliu.service.BrandService;
 
@@ -22,7 +23,10 @@ public class SelectAllServlet extends HttpServlet {
         // 输出结果
         response.setContentType("text/html;charset=utf-8");
         PrintWriter writer = response.getWriter();
-        writer.write(brandList.toString());
+
+        // fastjson
+        String jsonStr = JSON.toJSONString(brandList);
+        writer.write(jsonStr);
     }
 
     @Override
