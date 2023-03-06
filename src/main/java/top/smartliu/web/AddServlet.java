@@ -3,9 +3,11 @@ package top.smartliu.web;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.alibaba.fastjson.JSON;
 import top.smartliu.pojo.Brand;
 import top.smartliu.service.BrandService;
 
@@ -18,20 +20,25 @@ public class AddServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
 
         // 1. 接收表单提交的数据，封装为一个Brand对象
-        String brandName = request.getParameter("brandName");
-        String companyName = request.getParameter("companyName");
-        String ordered = request.getParameter("ordered");
-        String description = request.getParameter("description");
-        String status = request.getParameter("status");
+//        String brandName = request.getParameter("brandName");
+//        String companyName = request.getParameter("companyName");
+//        String ordered = request.getParameter("ordered");
+//        String description = request.getParameter("description");
+//        String status = request.getParameter("status");
 
         // 封装为一个Brand对象
-        Brand brand = new Brand();
-        brand.setBrandName(brandName);
-        brand.setCompanyName(companyName);
-        brand.setOrdered(Integer.parseInt(ordered));
-        brand.setDescription(description);
-        brand.setStatus(Integer.parseInt(status));
+//        Brand brand = new Brand();
+//        brand.setBrandName(brandName);
+//        brand.setCompanyName(companyName);
+//        brand.setOrdered(Integer.parseInt(ordered));
+//        brand.setDescription(description);
+//        brand.setStatus(Integer.parseInt(status));
+        BufferedReader br = request.getReader();
+        String params = br.readLine();
 
+        // 将JSON字符串转为Java对象
+        Brand brand = JSON.parseObject(params, Brand.class);
+        System.out.println(brand);
 
         // 2. 调用service 完成添加
         service.add(brand);
